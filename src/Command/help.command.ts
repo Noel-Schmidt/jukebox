@@ -1,6 +1,6 @@
-import {Command} from "./command";
-import {CommandHandler} from "./Handle/comand.handler";
-import {Channel, Guild, Message, MessageEmbed, TextChannel, User} from "discord.js";
+import { Command } from "./command";
+import { CommandHandler } from "./Handle/comand.handler";
+import { Channel, Guild, Message, MessageEmbed, TextChannel, User } from "discord.js";
 
 export class HelpCommand extends Command {
 
@@ -16,8 +16,8 @@ export class HelpCommand extends Command {
 
         textChannel.send(new MessageEmbed({
             title: 'Help - A list for help',
-            description: 'ASDASDsdaskdkasdkasdkasdkasd',
-            color: "AQUA"
+            description: '→ **help** - List you all commands.\n→ **skip** - Skip the current Song.\n→ **play** - Play a song from URL.\n→ **stop** - Stop the current Song.\n\n⭐ **Current Prefix**: * ⭐',
+            color: "DARK_ORANGE",
         }));
     }
 }
