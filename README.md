@@ -10,5 +10,4 @@
 
 *=Should it make sense in the course of development.
 
-→ Credits
-- None
+→ Credits<br>
