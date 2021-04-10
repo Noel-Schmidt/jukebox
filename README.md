@@ -8,7 +8,7 @@
 - [ ] Multi Server
 - [ ] Shards Manager*
 
-* = Should it make sense in the course of development.
+*=Should it make sense in the course of development.
 
 → Credits
 - None
