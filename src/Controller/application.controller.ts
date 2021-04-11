@@ -2,6 +2,7 @@ import {Client, Message, MessageEmbed} from "discord.js"
 import {CommandHandler} from "../Command/Handle/comand.handler";
 import {HelpCommand} from "../Command/help.command";
 import {ENVIRONMENT} from "../main";
+import {NicknameCommand} from "../Command/nickname.command";
 
 export class ApplicationController {
     instance: Client;
@@ -13,6 +14,7 @@ export class ApplicationController {
         });
 
         this.instance.on('ready', () => {
+            this.instance.user.setActivity(`on ${this.instance.guilds.cache.size} servers music`, { type: 'PLAYING' });
             console.log('=> Application Loaded');
         });
 
@@ -26,12 +28,17 @@ export class ApplicationController {
     setup() {
         this.commandHandler = new CommandHandler();
         this.commandHandler.registerCommand(new HelpCommand(this.commandHandler));
+        this.commandHandler.registerCommand(new NicknameCommand(this.commandHandler));
+
+        this.instance.on("guildCreate", () => {
+            this.instance.user.setActivity(`on ${this.instance.guilds.cache.size} servers music`, { type: 'PLAYING' });
+        });
 
         this.instance.on("message", (event: Message) => {
-            const author = event.author
-            const message = event.content
-            const guild = event.guild
-            const channel = event.channel
+            const author = event.author;
+            const message = event.content;
+            const guild = event.guild;
+            const channel = event.channel;
 
             if(message.includes(ENVIRONMENT.get('BOT_COMMAND_PREFIX'))) {
                 var args: Array<string> = message.split(" ")
@@ -45,11 +52,10 @@ export class ApplicationController {
                             description: "Dieser Command existiert nicht",
                             color: "RED"
                         })
-                        channel.send(messageEmbed)
+                        channel.send(messageEmbed);
                     }
                 }
             }
         });
     }
-
 }
