@@ -11,8 +11,8 @@ const DEFAULT_PORT = 80;
 export let application: ApplicationController;
 
 async function bootstrap() {
-    const enviromentLoader = new EnvironmentLoader()
-    await enviromentLoader.loadEnvironment(join(__dirname + '/../.env'));
+    const environmentLoader = new EnvironmentLoader()
+    await environmentLoader.loadEnvironment(join(__dirname + '/../.env'));
 
     const APP_MODE: string = ENVIRONMENT.has("APP_MODE") ? ENVIRONMENT.get("APP_MODE") : DEFAULT_MODE;
     const APP_HOST: string = ENVIRONMENT.has("APP_HOST") ? ENVIRONMENT.get("APP_HOST") : DEFAULT_HOST;
@@ -29,9 +29,7 @@ async function bootstrap() {
 }
 
 async function runtime(data: { APP_MODE, APP_HOST, APP_PORT, APP_TOKEN }) {
-    const app = new ApplicationController(data.APP_TOKEN);
-
-    application = app;
+    application = new ApplicationController(data.APP_TOKEN);
 }
 
 bootstrap()
