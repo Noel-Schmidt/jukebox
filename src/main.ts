@@ -8,20 +8,22 @@ const DEFAULT_MODE = "development";
 const DEFAULT_HOST = "127.0.0.1";
 const DEFAULT_PORT = 80;
 
-let application: ApplicationController;
+export let application: ApplicationController;
 
 async function bootstrap() {
     const enviromentLoader = new EnvironmentLoader()
     await enviromentLoader.loadEnvironment(join(__dirname + '/../.env'));
 
-    const APP_TOKEN: string = ENVIRONMENT.has('APP_TOKEN') ? ENVIRONMENT.get("APP_TOKEN") : null;
     const APP_MODE: string = ENVIRONMENT.has("APP_MODE") ? ENVIRONMENT.get("APP_MODE") : DEFAULT_MODE;
     const APP_HOST: string = ENVIRONMENT.has("APP_HOST") ? ENVIRONMENT.get("APP_HOST") : DEFAULT_HOST;
     const APP_PORT: number = ENVIRONMENT.has("APP_PORT") ? parseInt(ENVIRONMENT.get("APP_PORT"), 10) : DEFAULT_PORT;
 
+    const APP_TOKEN: string = ENVIRONMENT.has('APP_TOKEN') ? ENVIRONMENT.get("APP_TOKEN") : null;
+
     ENVIRONMENT.set('APP_MODE', APP_MODE.toString());
     ENVIRONMENT.set('APP_HOST', APP_HOST.toString());
     ENVIRONMENT.set('APP_PORT', APP_PORT.toString());
+    ENVIRONMENT.set('APP_TOKEN', APP_TOKEN.toString());
 
     return { APP_MODE: APP_MODE, APP_HOST: APP_HOST, APP_PORT: APP_PORT, APP_TOKEN: APP_TOKEN };
 }
