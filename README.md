@@ -3,6 +3,7 @@
 → Progress
 
 - [x] Bot Instance
+- [ ] Queue
 - [ ] Control Commands
 - [ ] Webinterface
 - [ ] Multi Server
